@@ -62,8 +62,18 @@ namespace Inspection
 
         public List<AuditDetails> GetAllAudit()
         {
-            return (from t in _connection.Table<AuditDetails>()
+            List<AuditDetails> audits = (from t in _connection.Table<AuditDetails>()
                     select t).ToList();
+            foreach(AuditDetails a in audits)
+            {
+                a.AuditDisplayName = GetTemplateNameOnID(a.TemplateId) + "-" + a.Location;
+            }
+            return audits;
+        }
+
+        public void DeleteALLAuditDetails()
+        {
+            _connection.DeleteAll<AuditDetails>();
         }
         public void SetDefaultTemplate()
         {
@@ -135,7 +145,28 @@ namespace Inspection
             }
         }
 
-        
+        public void SetAuditDetails()
+        {
+            int count = (from t in _connection.Table<AuditDetails>()
+                         select t).ToList().Count;
+            if(count == 0)
+            {
+                AuditDetails audit = new AuditDetails();
+                audit.CreatedOn = DateTime.Now.Date;
+                audit.Location = "CGI Mumbai";
+                audit.TemplateId = 1;
+                audit.UserId = "Kenjale,Pooja";
+                SaveAudit(audit);
+
+                AuditDetails audit1 = new AuditDetails();
+                audit1.CreatedOn = DateTime.Now.Date;
+
+                audit1.Location = "CGI Mumbai seepz";
+                audit1.TemplateId = 2;
+                audit1.UserId = "Kenjale,Pooja";
+                SaveAudit(audit1);
+            }
+        }
         public List<TemplateQuestions> GetTemplateQuestions()
         {
             return (from t in _connection.Table<TemplateQuestions>()
@@ -144,7 +175,12 @@ namespace Inspection
         public List<AuditAnswers> GetAuditAnswersByID(int id)
         {
             return _connection.Table<AuditAnswers>().Where(t => t.AuditId == id).ToList();
-                    }
+        }
+        public string GetTemplateNameOnID(int id)
+        {
+            return _connection.Table<AuditTemplate>().FirstOrDefault(t => t.Id == id).Name;
+        }
+
         public void SaveAnswers(List<AuditAnswers> questionAnswers)
         {
             foreach (AuditAnswers ans in questionAnswers)

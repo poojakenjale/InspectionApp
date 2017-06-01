@@ -12,6 +12,34 @@ namespace Inspection
         public MainPage()
         {
             InitializeComponent();
+            InspectionDatabase db = new InspectionDatabase();
+          
+            db.SetAuditDetails();
+            List<AuditDetails> audits = db.GetAllAudit();
+            listViewAudits.ItemsSource = audits;
         }
+        //void OnAddAuditClick(object sender, EventArgs args)
+        //{
+            
+        //    Navigation.PushModalAsync(new AuditQuestionAnswers());
+        //}
+
+        private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            listViewAudits.BeginRefresh();
+            InspectionDatabase db = new InspectionDatabase();
+            List<AuditDetails> audits = db.GetAllAudit();
+            if (string.IsNullOrWhiteSpace(e.NewTextValue))
+                listViewAudits.ItemsSource = audits;
+            else
+            {
+                List<AuditDetails> auditseach= audits.Where(i => i.AuditDisplayName.ToLower().Contains(e.NewTextValue.ToLower())).ToList();
+                listViewAudits.ItemsSource = auditseach;
+            }
+                
+
+            listViewAudits.EndRefresh();
+        }
+
     }
 }

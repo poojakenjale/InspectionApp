@@ -12,8 +12,10 @@ namespace Inspection
         public App()
         {
             InitializeComponent();
-
             MainPage = new Inspection.MainPage();
+            MainPage.BackgroundImage = "background.jpg";
+            
+            
         }
 
         protected override void OnStart()
