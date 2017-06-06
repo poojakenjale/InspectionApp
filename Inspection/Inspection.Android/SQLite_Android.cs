@@ -15,8 +15,8 @@ namespace Inspection.Droid
             var path = Path.Combine(documentspath, filename);  
    
             var platform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();  
-            var connection = new SQLite.Net.SQLiteConnection(platform, path);  
+            var connection = new SQLite.Net.SQLiteConnection(platform, path);             
             return connection;  
-        }  
+        }     
     }
 }

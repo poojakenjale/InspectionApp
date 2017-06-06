@@ -3,13 +3,14 @@ using SQLite.Net;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace Inspection
 {
     public class InspectionDatabase
     {
         private SQLiteConnection _connection;
-
+        private SQLiteCommand _cmd;
         public InspectionDatabase()
         {
             _connection = DependencyService.Get<ISQLite>().GetConnection();
@@ -19,7 +20,7 @@ namespace Inspection
             _connection.CreateTable<AuditAnswers>();
         }
 
-        public IEnumerable<AuditTemplate> GetAllTemplates()
+        public List<AuditTemplate> GetAllTemplates()
         {
             return (from t in _connection.Table<AuditTemplate>()
                     select t).ToList();
@@ -57,7 +58,20 @@ namespace Inspection
 
         public int SaveAudit(AuditDetails audit)
         {
-            return _connection.Insert(audit);
+           
+            string sql = @"select last_insert_rowid()";
+            _cmd = _connection.CreateCommand(sql);
+            _cmd.CommandText = sql;
+            _connection.Insert(audit);
+            int id = _cmd.ExecuteScalar<int>();
+
+            return id;
+            //cmd_id.CommandText = "select last_insert_rowid() as id from lyrics";
+           
+            //System.Object temp = cmd_id.ExecuteScalar;
+            //_id = int.Parse(temp.ToString());
+            //int id = (from t in _connection.Table<AuditDetails>()
+            //          select max(t.Id));
         }
 
         public List<AuditDetails> GetAllAudit()
@@ -67,6 +81,8 @@ namespace Inspection
             foreach(AuditDetails a in audits)
             {
                 a.AuditDisplayName = GetTemplateNameOnID(a.TemplateId) + "-" + a.Location;
+
+                a.CreatedOnDisplayName = a.CreatedOn.ToString("dd/M/yyyy");
             }
             return audits;
         }
@@ -74,6 +90,7 @@ namespace Inspection
         public void DeleteALLAuditDetails()
         {
             _connection.DeleteAll<AuditDetails>();
+            _connection.DeleteAll<AuditAnswers>();
         }
         public void SetDefaultTemplate()
         {

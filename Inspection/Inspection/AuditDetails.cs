@@ -13,5 +13,6 @@ namespace Inspection
         public string GPSCoordinate { get; set; }
         public DateTime CreatedOn { get; set; }
         public string  AuditDisplayName { get; set; }
+        public string CreatedOnDisplayName { get; set; }
     }
 }

@@ -12,9 +12,7 @@ namespace Inspection
         public App()
         {
             InitializeComponent();
-            MainPage = new Inspection.MainPage();
-            MainPage.BackgroundImage = "background.jpg";
-            
+            MainPage = new Inspection.MainPage();                   
             
         }
 

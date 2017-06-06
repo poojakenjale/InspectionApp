@@ -6,5 +6,6 @@ namespace Inspection
     public interface ISQLite
      {
         SQLiteConnection GetConnection();
+      
     }
 }

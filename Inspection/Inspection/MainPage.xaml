@@ -2,28 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Inspection"
-             x:Class="Inspection.MainPage">
-    <StackLayout Orientation="Vertical"  Padding="10" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-        <StackLayout Orientation="Horizontal" Spacing="10" Padding="10" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-            <!--<Entry HeightRequest="32" WidthRequest="280"></Entry>-->
+             x:Class="Inspection.MainPage"
+             BackgroundImage="background.jpg">
+    <StackLayout Orientation="Vertical"   VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+        <StackLayout Orientation="Horizontal"  VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Margin="5,15,5,15">
+            <Label></Label>
             <SearchBar Placeholder="Search" TextChanged="SearchBar_OnTextChanged" WidthRequest="280"  HeightRequest="32"></SearchBar>
             <Button Image="Map.png" HeightRequest="32" WidthRequest="32"></Button>
-            <Button Image="Add.png" HeightRequest="32" WidthRequest="32" ></Button>
-        </StackLayout>            
-        <ListView x:Name="listViewAudits" RowHeight="100">
-                <ListView.ItemTemplate>
+            <Button Image="Add.png" HeightRequest="32" WidthRequest="32"   Clicked="OnAddAuditClick" ></Button>
+            <Label></Label>
+            <Label></Label>
+        </StackLayout>
+        <ListView x:Name="listViewAudits" ItemSelected="listViewAudits_ItemSelected" RowHeight="60">
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill">
-                            <Label Text = "{Binding AuditDisplayName}"  AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
-                            <StackLayout Orientation="Horizontal">                                
-                                <Label Text = "{Binding UserId}" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
-                                <Label Text = "{Binding CreatedOn}" AbsoluteLayout.LayoutBounds="250.25, 35, 50, 50 "/>
-                            </StackLayout>                         
+                        <StackLayout Orientation="Vertical" Padding="10">
+                            <Label Text = "{Binding AuditDisplayName}" Margin="5,0,0,0"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text = "{Binding UserId}" Margin="5,0,0,0"/>
+                                <Label Text = "{Binding CreatedOnDisplayName}" Margin="120,0,0,0" />
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            </ListView.ItemTemplate> 
+        </ListView>
+        <!--<ListView x:Name="listViewAudits" RowHeight="100" ItemSelected="listViewAudits_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text ="hi"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
     </StackLayout>
 </ContentPage>
