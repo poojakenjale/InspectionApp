@@ -32,8 +32,8 @@ namespace Inspection
             audit.Location =  txtLocation.Text;            
             audit.UserId = "Kenjale,Pooja";
             audit.CreatedOn = DateTime.Now.Date;
-            int auditID = db.SaveAudit(audit);            
-            Navigation.PushModalAsync(new AuditQuestionAnswers(auditID,true));
+            int auditID = db.SaveAudit(audit);
+			Navigation.PushModalAsync(new AuditQuestionAnswers(auditID,true));
         }
     }
 

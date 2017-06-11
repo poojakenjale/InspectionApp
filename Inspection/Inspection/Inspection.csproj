@@ -47,6 +47,11 @@
       <DependentUpon>AuditQuestionAnswers.xaml</DependentUpon>
     </Compile>
     <Compile Include="AuditTemplate.cs" />
+    <Compile Include="Camera.xaml.cs">
+      <DependentUpon>Camera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuditData.cs" />
+    <Compile Include="CameraPage.cs" />
     <Compile Include="InspectionDatabase.cs" />
     <Compile Include="ISQLite.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -99,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AuditCreation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Camera.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

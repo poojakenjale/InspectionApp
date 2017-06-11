@@ -4,29 +4,47 @@
              x:Class="Inspection.AuditQuestionAnswers"
              Title="AuditQuestionAnswers"
              BackgroundImage="background.jpg">
+	<ScrollView>
     <StackLayout Orientation="Vertical" Padding="20" HorizontalOptions="Fill" VerticalOptions="Fill">
+		<StackLayout Orientation="Horizontal">
         <Label x:Name="lblQuestion1" Text = "This is question 1"  AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
-        <StackLayout Orientation="Horizontal">
-            <Entry x:Name="txtEntry1" AbsoluteLayout.LayoutBounds="50, 35, 200, 25" WidthRequest="220"/>
-           
-        </StackLayout>
-        <Label Text = "This is question 2" x:Name="lblQuestion2" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+				<Button x:Name="btnCamera1" Image="Upload.png" CommandParameter="1" WidthRequest="30" HeightRequest="30"></Button>
+				<Button x:Name="btnView1" Image="ViewImage.png" IsVisible="False" CommandParameter="1" WidthRequest="30" HeightRequest="30"></Button>
+			</StackLayout>
+		<StackLayout Orientation="Horizontal">
+            <Entry x:Name="txtEntry1" AbsoluteLayout.LayoutBounds="50, 35, 200, 25" WidthRequest="220"/>				
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Label Text = "This is question 2" x:Name="lblQuestion2" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+				<Button x:Name="btnCamera2" Image="Upload.png" WidthRequest="30" HeightRequest="30"></Button>
+				<Button x:Name="btnView2" Image="ViewImage.png" IsVisible="False" CommandParameter="1" WidthRequest="30" HeightRequest="30"></Button>
+			</StackLayout>        
         <StackLayout Orientation="Horizontal">
             <DatePicker x:Name="datePicker" AbsoluteLayout.LayoutBounds="50, 90, 200, 25" WidthRequest="220"></DatePicker>
             <!--<Entry x:Name="txtEntry2" AbsoluteLayout.LayoutBounds="50, 90, 200, 25" WidthRequest="180"/>-->
             
         </StackLayout>
-        <Label Text = "This is question 3" x:Name="lblQuestion3" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+			<StackLayout Orientation="Horizontal">
+				<Label Text = "This is question 3" x:Name="lblQuestion3" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+				<Button x:Name="btnCamera3" Image="Upload.png" WidthRequest="30" HeightRequest="30"></Button>
+				<Button x:Name="btnView3" Image="ViewImage.png" IsVisible="False" CommandParameter="1" WidthRequest="30" HeightRequest="30"></Button>
+			</StackLayout>
+        
         <StackLayout Orientation="Horizontal">
             <Switch x:Name="chkFlag" AbsoluteLayout.LayoutBounds="50, 90, 200, 25" ></Switch>
             <!--<Entry x:Name="txtEntry3" AbsoluteLayout.LayoutBounds="50, 90, 200, 25" WidthRequest="180"/>-->
        
         </StackLayout>
-        <Label Text = "This is question 4" x:Name="lblQuestion4" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+			<StackLayout Orientation="Horizontal">
+				<Label Text = "This is question 4" x:Name="lblQuestion4" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+				<Button x:Name="btnCamera4" Image="Upload.png" WidthRequest="30" HeightRequest="30"></Button>
+				<Button x:Name="btnView4" Image="ViewImage.png" IsVisible="False" CommandParameter="1" WidthRequest="30" HeightRequest="30"></Button>
+			</StackLayout>        
         <StackLayout Orientation="Horizontal">
             <Picker x:Name="ddlAnswer4" AbsoluteLayout.LayoutBounds="50, 90, 200, 25" WidthRequest="220"></Picker>
            
         </StackLayout>
-        <Button Text="Save" x:Name="btnSave" Margin="250,0,0,0" Clicked="OnSaveClick"></Button>
-    </StackLayout>
+        <Button Text="Save" x:Name="btnSave" Margin="250,0,0,0" Clicked="OnSaveClick"></Button>			
+		</StackLayout>
+	</ScrollView>
 </ContentPage>
