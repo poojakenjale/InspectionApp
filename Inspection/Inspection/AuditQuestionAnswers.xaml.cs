@@ -100,10 +100,13 @@ namespace Inspection
 					btnCamera4.IsVisible = false;
 				}
 
-				txtEntry1.Text = auditDatas[0].Answer;
-				datePicker.Date = DateTime.Parse(auditDatas[1].Answer);
-				chkFlag.IsToggled = bool.Parse(auditDatas[2].Answer);
-				ddlAnswer4.SelectedItem = auditDatas[3].Answer;
+				if (answers == null || answers.Count <= 0)
+				{
+					txtEntry1.Text = auditDatas[0].Answer;
+					datePicker.Date = DateTime.Parse(auditDatas[1].Answer);
+					chkFlag.IsToggled = bool.Parse(auditDatas[2].Answer);
+					ddlAnswer4.SelectedItem = auditDatas[3].Answer;
+				}
 			}			
 
 			btnCamera1.Clicked += (sender, e) => { BtnCamera_Clicked(sender, e, "Question1"); };
