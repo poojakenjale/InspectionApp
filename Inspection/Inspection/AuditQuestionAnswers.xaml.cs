@@ -139,7 +139,7 @@ namespace Inspection
 			string imgUrl2 = string.Empty;
 			string imgUrl3 = string.Empty;
 			string imgUrl4 = string.Empty;
-			if (answers.Count > 1)
+			if (answers != null && answers.Count > 1)
 			{
 				imgUrl1 = answers[0].ImagePath;
 				imgUrl2 = answers[1].ImagePath;
